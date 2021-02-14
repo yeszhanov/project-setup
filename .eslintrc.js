@@ -9,17 +9,14 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  extends: [
-    // 'airbnb',
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['plugin:react/recommended', 'plugin:prettier/recommended'],
 
   plugins: ['react', 'react-hooks'],
   ignorePatterns: ['/node_modules/**', '/build/**'],
 
   rules: {
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/react-in-jsx-scope': 'off',
     'react/prop-types': 1,
     'linebreak-style': 0,
     'no-unused-vars': [
