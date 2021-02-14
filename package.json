@@ -36,8 +36,10 @@
     }
   },
   "lint-staged": {
-    "*.+(js|jsx)": "eslint --fix",
-    "*.+(json|css|md)": "prettier --write"
+    "**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "react": "^17.0.1",
