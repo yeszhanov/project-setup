@@ -1,5 +1,3 @@
-import "./index.css"
-const elven = {name:2}
-const lala = {...elven, test:3}
+import './index.css';
 
-console.log(elven);
+const elven = { name: 2 };
