@@ -1,7 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 let mode = 'development';
 
@@ -13,6 +13,10 @@ module.exports = {
 
   output: {
     assetModuleFilename: 'images/[hash][ext][query]',
+    filename: '[name].[contenthash].js',
+    path: path.join(__dirname, 'build'),
+    devtoolModuleFilenameTemplate: '[resource-path]',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -40,7 +44,7 @@ module.exports = {
     ],
   },
   plugins: [
-    // new WebpackManifestPlugin({ basePath: '/bundle' }),
+    new WebpackManifestPlugin({}),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
