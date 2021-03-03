@@ -1,5 +1,8 @@
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+
 let mode = 'development';
 
 if (process.env.NODE_ENV === 'production') {
@@ -7,6 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 module.exports = {
   mode: mode,
+
   output: {
     assetModuleFilename: 'images/[hash][ext][query]',
   },
@@ -36,6 +40,7 @@ module.exports = {
     ],
   },
   plugins: [
+    // new WebpackManifestPlugin({ basePath: '/bundle' }),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
@@ -43,9 +48,11 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
+    modules: [path.resolve(__dirname, 'js'), 'node_modules'],
   },
   devtool: 'source-map',
   devServer: {
+    historyApiFallback: true,
     contentBase: './dist',
     hot: true,
   },
